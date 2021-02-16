@@ -9,6 +9,10 @@ parameters:
     locale: en
     container.autowiring.strict_mode: true
 
+sensio_framework_extra:
+    router:
+        annotations: false
+
 framework:
     #esi:             ~
     #translator:      { fallbacks: ["%locale%"] }
