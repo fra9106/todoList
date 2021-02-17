@@ -62,8 +62,8 @@
     "doctrine/reflection": {
         "version": "1.2.2"
     },
-    "egulias/email-validator": {
-        "version": "2.1.25"
+    "fig/link-util": {
+        "version": "1.1.2"
     },
     "incenteev/composer-parameter-handler": {
         "version": "v2.1.4"
@@ -86,14 +86,35 @@
     "psr/log": {
         "version": "1.1.3"
     },
+    "psr/simple-cache": {
+        "version": "1.0.1"
+    },
+    "sensio/distribution-bundle": {
+        "version": "v5.0.25"
+    },
     "sensio/framework-extra-bundle": {
         "version": "v3.0.27"
+    },
+    "sensio/generator-bundle": {
+        "version": "v3.1.7"
+    },
+    "sensiolabs/security-checker": {
+        "version": "4.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "4.0",
+            "ref": "160c9b600564faa1224e8f387d49ef13ceb8b793"
+        },
+        "files": [
+            "./config/packages/security_checker.yaml"
+        ]
     },
     "swiftmailer/swiftmailer": {
         "version": "v6.2.5"
     },
-    "symfony/contracts": {
-        "version": "v1.1.10"
+    "symfony/deprecation-contracts": {
+        "version": "v2.2.0"
     },
     "symfony/flex": {
         "version": "1.0",
@@ -106,6 +127,15 @@
         "files": [
             "./.env"
         ]
+    },
+    "symfony/http-client": {
+        "version": "v5.2.3"
+    },
+    "symfony/http-client-contracts": {
+        "version": "v2.3.1"
+    },
+    "symfony/mime": {
+        "version": "v5.2.3"
     },
     "symfony/monolog-bundle": {
         "version": "3.3",
@@ -143,9 +173,6 @@
     "symfony/polyfill-ctype": {
         "version": "v1.22.1"
     },
-    "symfony/polyfill-iconv": {
-        "version": "v1.22.1"
-    },
     "symfony/polyfill-intl-icu": {
         "version": "v1.22.1"
     },
@@ -158,11 +185,26 @@
     "symfony/polyfill-mbstring": {
         "version": "v1.22.1"
     },
+    "symfony/polyfill-php56": {
+        "version": "v1.20.0"
+    },
+    "symfony/polyfill-php70": {
+        "version": "v1.20.0"
+    },
     "symfony/polyfill-php72": {
         "version": "v1.22.1"
     },
     "symfony/polyfill-php73": {
         "version": "v1.22.1"
+    },
+    "symfony/polyfill-php80": {
+        "version": "v1.22.1"
+    },
+    "symfony/polyfill-util": {
+        "version": "v1.22.1"
+    },
+    "symfony/service-contracts": {
+        "version": "v2.2.0"
     },
     "symfony/swiftmailer-bundle": {
         "version": "2.5",

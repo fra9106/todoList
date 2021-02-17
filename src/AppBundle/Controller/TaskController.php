@@ -7,10 +7,10 @@ use AppBundle\Form\TaskType;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
-//use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class TaskController extends AbstractController
+class TaskController extends Controller
 {
     /**
      * @Route("/tasks", name="task_list")
