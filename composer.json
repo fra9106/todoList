@@ -1,8 +1,7 @@
 {
-    "type": "project",
+    "name": "saro0h/to-do-list",
     "license": "proprietary",
-    "minimum-stability": "dev",
-    "prefer-stable": true,
+    "type": "project",
     "require": {
         "php": ">=7.2.5",
         "ext-ctype": "*",
