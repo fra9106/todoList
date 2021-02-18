@@ -8,4 +8,5 @@ return [
     Symfony\Bundle\SwiftmailerBundle\SwiftmailerBundle::class => ['all' => true],
     Sensio\Bundle\DistributionBundle\SensioDistributionBundle::class => ['all' => true],
     Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle::class => ['dev' => true, 'test' => true],
+    Symfony\Bundle\AsseticBundle\AsseticBundle::class => ['all' => true],
 ];
