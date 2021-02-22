@@ -5,13 +5,14 @@ namespace App\Controller;
 use App\Entity\Task;
 use App\Entity\User;
 use App\Form\TaskType;
+use App\Security\Voter\TaskVoter;
 use App\Repository\TaskRepository;
-use Doctrine\ORM\EntityManagerInterface;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends AbstractController
 {
@@ -32,6 +33,7 @@ class TaskController extends AbstractController
      */
     public function taskList(TaskRepository $taskRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('task/list.html.twig', [
             'tasks' => $taskRepository->findAll()
         ]);
@@ -42,6 +44,7 @@ class TaskController extends AbstractController
      */
     public function taskListDone(TaskRepository $taskRepository): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('task/list.html.twig', [
             'tasks' => $taskRepository->findBy(['isDone' => true])
         ]);
@@ -81,6 +84,7 @@ class TaskController extends AbstractController
      */
     public function editAction(Task $task, Request $request)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
@@ -104,6 +108,7 @@ class TaskController extends AbstractController
      */
     public function toggleTaskAction(Task $task)
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $task->toggle(!$task->isDone());
         $this->getDoctrine()->getManager()->flush();
 
@@ -117,6 +122,7 @@ class TaskController extends AbstractController
      */
     public function deleteTaskAction(Task $task)
     {
+        $this->denyAccessUnlessGranted(TaskVoter::CAN_DELETE, $task, "Oops.... :=( Vous n'êtes pas autorisé à supprimer cette tâche !");
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();
