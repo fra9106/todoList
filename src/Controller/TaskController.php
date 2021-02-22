@@ -10,6 +10,7 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Response;
 
 class TaskController extends AbstractController
 {
@@ -28,7 +29,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks", name="task_list")
      */
-    public function taskList(TaskRepository $taskRepository)
+    public function taskList(TaskRepository $taskRepository): Response
     {
         return $this->render('task/list.html.twig', [
             'tasks' => $taskRepository->findAll()
@@ -38,9 +39,12 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/create", name="task_create")
      */
-    public function taskCreate(Request $request)
+    public function taskCreate(Request $request): Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER');
         $task = new Task();
+        $task->setUser($this->getUser());
+        $task->setCreatedAt(new \Datetime());
         $form = $this->createForm(TaskType::class, $task);
 
         $form->handleRequest($request);
@@ -56,7 +60,9 @@ class TaskController extends AbstractController
             return $this->redirectToRoute('task_list');
         }
 
-        return $this->render('task/create.html.twig', ['form' => $form->createView()]);
+        return $this->render('task/create.html.twig', [
+            'form' => $form->createView()
+        ]);
     }
 
     /**

@@ -40,9 +40,10 @@ class UserController extends AbstractController
             $manager->persist($user);
             $manager->flush();
         
+            $this->addFlash('success', "L'utilisateur a bien été ajouté.");
             return $this->redirectToRoute('login');
 
-            $this->addFlash('success', "L'utilisateur a bien été ajouté.");
+            
 
             return $this->redirectToRoute('user_list');
         }

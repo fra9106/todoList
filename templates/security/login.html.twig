@@ -1,8 +1,17 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    {% for flash_message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success text-center" role="alert">
+            <strong>Superbe !</strong> {{ flash_message }}
+        </div>
+    {% endfor %}
+
     {% if error %}
-        <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="alert alert-danger" role="alert">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
     {% endif %}
 
     <form action="{{ path('login') }}" method="post">
