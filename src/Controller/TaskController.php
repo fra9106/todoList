@@ -4,25 +4,41 @@ namespace App\Controller;
 
 use App\Entity\Task;
 use App\Form\TaskType;
-use Symfony\Component\HttpFoundation\Request;
+use App\Repository\TaskRepository;
+use Doctrine\ORM\EntityManagerInterface;
 //use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class TaskController extends AbstractController
 {
     /**
+     * $manager construct
+     *
+     * @var EntityManagerInterface
+     */
+    private $manager;
+
+    public function __construct(EntityManagerInterface $manager)
+    {
+        $this->manager = $manager;
+    }
+
+    /**
      * @Route("/tasks", name="task_list")
      */
-    public function listAction()
+    public function taskList(TaskRepository $taskRepository)
     {
-        return $this->render('task/list.html.twig', ['tasks' => $this->getDoctrine()->getRepository('App:Task')->findAll()]);
+        return $this->render('task/list.html.twig', [
+            'tasks' => $taskRepository->findAll()
+        ]);
     }
 
     /**
      * @Route("/tasks/create", name="task_create")
      */
-    public function createAction(Request $request)
+    public function taskCreate(Request $request)
     {
         $task = new Task();
         $form = $this->createForm(TaskType::class, $task);
