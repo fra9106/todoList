@@ -4,14 +4,18 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\UserRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\UserRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
-
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(
+ * fields = {"email"},
+ * message = "Email déjà utilisé, veuillez taper un autre email !")
  */
 class User implements UserInterface
 {
@@ -23,7 +27,11 @@ class User implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=true)
+     * @ORM\Column(type="string", length=180)
+     * @Assert\NotBlank
+     * @Assert\Email(
+     *      message = "l'email '{{ value }}' est un mail non valide !."
+     * )
      */
     private $email;
 
@@ -35,6 +43,13 @@ class User implements UserInterface
     /**
      * @var string The hashed password
      * @ORM\Column(type="string")
+     * @Assert\NotBlank
+     * @Assert\Length(
+     * min = 4,
+     * max = 15,
+     * minMessage = "Votre mot de passe doit contenir {{ limit }} caractères minimum",
+     * maxMessage = "Votre mot de passe doit contenir {{ limit }} caractères maximum",
+     * )
      */
     private $password;
 
@@ -45,11 +60,25 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     * min = 4,
+     * max = 50,
+     * minMessage = "Votre prénom doit contenir {{ limit }} caractères minimum",
+     * maxMessage = "Votre prénom doit contenir {{ limit }} caractères maximum",
+     * )
      */
     private $firstName;
 
     /**
      * @ORM\Column(type="string", length=100)
+     * @Assert\NotBlank
+     * @Assert\Length(
+     * min = 4,
+     * max = 50,
+     * minMessage = "Votre nom doit contenir {{ limit }} caractères minimum",
+     * maxMessage = "Votre nom doit contenir {{ limit }} caractères maximum",
+     * )
      */
     private $lastName;
 

@@ -34,7 +34,7 @@ class TaskController extends AbstractController
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
         return $this->render('task/list.html.twig', [
-            'tasks' => $taskRepository->findAll()
+            'tasks' => $taskRepository->findBy([], ['createdAt' => 'DESC'])
         ]);
     }
 
