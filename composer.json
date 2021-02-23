@@ -9,6 +9,7 @@
         "doctrine/doctrine-bundle": "^2.2",
         "doctrine/doctrine-migrations-bundle": "^3.0",
         "doctrine/orm": "^2.8",
+        "fakerphp/faker": "^1.13",
         "phpunit/phpunit": "^9.5",
         "sensio/framework-extra-bundle": "^5.0",
         "symfony/annotations-pack": "^1.0",

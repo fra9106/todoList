@@ -7,7 +7,6 @@ use App\Entity\User;
 use App\Form\TaskType;
 use App\Security\Voter\TaskVoter;
 use App\Repository\TaskRepository;
-//use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -82,7 +81,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/edit", name="task_edit")
      */
-    public function editAction(Task $task, Request $request)
+    public function taskEdit(Task $task, Request $request)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
         $form = $this->createForm(TaskType::class, $task);
@@ -106,7 +105,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/toggle", name="task_toggle")
      */
-    public function toggleTaskAction(Task $task)
+    public function taskToggle(Task $task)
     {
         $this->denyAccessUnlessGranted('ROLE_USER');
         $task->toggle(!$task->isDone());
@@ -120,7 +119,7 @@ class TaskController extends AbstractController
     /**
      * @Route("/tasks/{id}/delete", name="task_delete")
      */
-    public function deleteTaskAction(Task $task)
+    public function taskDelete(Task $task)
     {
         $this->denyAccessUnlessGranted(TaskVoter::CAN_DELETE, $task, "Oops.... :=( Vous n'êtes pas autorisé à supprimer cette tâche !");
         $em = $this->getDoctrine()->getManager();

@@ -14,7 +14,7 @@
                     </h4>
                     <h4><a href="{{ path('task_edit', {'id' : task.id }) }}">{{ task.title }}</a></h4>
                     <p>{{ task.content }}</p>
-                    <span class="badge">{{task.user.fullName}}</span>
+                    <span class="badge">Publié par : {{task.user.fullName}} le : {{task.createdAt|date('d/m/Y')}} </span>
                 </div>
                 <div>
                     <form action="{{ path('task_toggle', {'id' : task.id }) }}">
