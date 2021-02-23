@@ -121,7 +121,6 @@ class TaskController extends AbstractController
      */
     public function taskDelete(Task $task)
     {
-        $this->denyAccessUnlessGranted(TaskVoter::CAN_DELETE, $task, "Oops.... :=( Vous n'êtes pas autorisé à supprimer cette tâche !");
         $em = $this->getDoctrine()->getManager();
         $em->remove($task);
         $em->flush();
