@@ -23,6 +23,7 @@
         "symfony/framework-bundle": "5.1.*",
         "symfony/maker-bundle": "^1.29",
         "symfony/monolog-bundle": "^3.1",
+        "symfony/phpunit-bridge": "^5.2",
         "symfony/polyfill-apcu": "^1.0",
         "symfony/security-bundle": "5.2.*",
         "symfony/stopwatch": "5.2.*",

@@ -15,6 +15,18 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 class UserController extends AbstractController
 {
     /**
+     * $manager construct
+     *
+     * @var EntityManagerInterface
+     */
+    private $entityManager;
+
+    public function __construct(EntityManagerInterface $entityManager)
+    {
+        $this->entityManager = $entityManager;
+    }
+
+    /**
      * @Route("/users", name="user_list")
      */
     public function userList(UserRepository $UserRepository)
@@ -28,7 +40,7 @@ class UserController extends AbstractController
     /**
      * @Route("/users/create", name="user_create")
      */
-    public function UserCreate(Request $request, EntityManagerInterface $manager , UserPasswordEncoderInterface $encoder)
+    public function UserCreate(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = new User();
@@ -39,8 +51,8 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
-            $manager->persist($user);
-            $manager->flush();
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
         
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
             return $this->redirectToRoute('login');
@@ -58,7 +70,7 @@ class UserController extends AbstractController
     /**
      * @Route("/users/{id}/edit", name="user_edit")
      */
-    public function editAction(User $user, Request $request, EntityManagerInterface $manager , UserPasswordEncoderInterface $encoder)
+    public function editAction(User $user, Request $request, UserPasswordEncoderInterface $encoder)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(UserType::class, $user);
@@ -68,8 +80,8 @@ class UserController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $hash = $encoder->encodePassword($user, $user->getPassword());
             $user->setPassword($hash);
-            $manager->persist($user);
-            $manager->flush();
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
         
             $this->addFlash('success', "L'utilisateur a bien été modifié");
 
@@ -88,9 +100,9 @@ class UserController extends AbstractController
     public function userDelete(User $user)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($user);
-        $em->flush();
+        $this->getDoctrine()->getManager();
+        $this->entityManager->remove($user);
+        $this->entityManager->flush();
 
         $this->addFlash('success', 'L\'utilisateur a bien été supprimée.');
 
