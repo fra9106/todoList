@@ -1,16 +1,25 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+
+    {% for flash_message in app.session.flashBag.get('success') %}
+        <div class="alert alert-success text-center" role="alert">
+            <strong>Superbe !</strong> {{ flash_message }}
+        </div>
+    {% endfor %}
+
     {% if error %}
-        <div class="alert alert-danger" role="alert">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        <div class="alert alert-danger" role="alert">
+        {{ error.messageKey|trans(error.messageData, 'security') }}
+        </div>
     {% endif %}
 
-    <form action="{{ path('login_check') }}" method="post">
-        <label for="username">Nom d'utilisateur :</label>
-        <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    <form action="{{ path('login') }}" method="post">
+        <label for="email">E.mail :</label>
+        <input type="text" id="username" required name="_username" value="{{ last_username }}" />
 
         <label for="password">Mot de passe :</label>
-        <input type="password" id="password" name="_password" />
+        <input type="password" id="password" required name="_password" />
 
         <button class="btn btn-success" type="submit">Se connecter</button>
     </form>
