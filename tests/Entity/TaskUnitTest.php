@@ -2,13 +2,15 @@
 
 namespace App\Tests;
 
-use App\Entity\Task;
 use DateTime;
+use App\Entity\Task;
+use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
 class TaskUnitTest extends TestCase
 {
     private $task;
+    private $date;
 
     public function setUp() : void
     {
@@ -41,6 +43,19 @@ class TaskUnitTest extends TestCase
     {
         $this->task->setCreatedAt($this->date);
         $this->assertSame($this->date, $this->task->getCreatedAt());
+    }
+
+    public function testUser()
+    {
+        $this->task->setUser(new User());
+        $this->assertInstanceOf(User::class, $this->task->getUser());
+    }
+
+    public function testIsEmpty()
+    {
+        $this->assertEmpty($this->task->getTitle());
+        $this->assertEmpty($this->task->getContent());
+        $this->assertEmpty($this->task->getUser());
     }
 
 }
