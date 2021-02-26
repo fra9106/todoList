@@ -11,14 +11,16 @@ class TaskUnitTest extends TestCase
 {
     private $task;
     private $date;
+    private $user;
 
     public function setUp() : void
     {
         $this->task = new Task();
         $this->date = new DateTime();
+        $this->user = new User();
     }
 
-    public function testId()
+    public function testId() : void
     {
         $this->assertNull($this->task->getId());
     }
@@ -39,16 +41,25 @@ class TaskUnitTest extends TestCase
         $this->assertFalse($this->task->getContent() === 'false');
     }
 
-    public function testCreatedAt()
+    public function testIsDone()
+    {
+        $this->assertEquals(0, $this->task->IsDone());
+    }
+
+    public function testCreatedAt() 
     {
         $this->task->setCreatedAt($this->date);
         $this->assertSame($this->date, $this->task->getCreatedAt());
+        $this->assertTrue($this->task->getCreatedAt() === $this->date);
+        $this->assertFalse($this->task->getCreatedAt() === 'false');
     }
 
     public function testUser()
     {
-        $this->task->setUser(new User());
+        $this->task->setUser($this->user);
         $this->assertInstanceOf(User::class, $this->task->getUser());
+        $this->assertTrue($this->task->getUser() === $this->user);
+        $this->assertFalse($this->task->getUser() === 'false');
     }
 
     public function testIsEmpty()

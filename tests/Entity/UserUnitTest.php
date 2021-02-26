@@ -2,19 +2,22 @@
 
 namespace App\Tests\Entity;
 
+use App\Entity\Task;
 use App\Entity\User;
 use PHPUnit\Framework\TestCase;
 
 class UserUnitTest extends TestCase
 {
     private $user;
+    private $task;
 
     public function setUp() : void
     {
         $this->user = new User();
+        $this->task = new Task();
     }
 
-    public function testId()
+    public function testId() : void
     {
         $this->assertNull($this->user->getId());
     }
@@ -25,7 +28,6 @@ class UserUnitTest extends TestCase
         $this->assertSame('first_name', $this->user->getFirstName());
         $this->assertTrue($this->user->getFirstName() === 'first_name');
         $this->assertFalse($this->user->getFirstName() === 'false');
-        
     }
 
     public function testLastName()
@@ -52,7 +54,7 @@ class UserUnitTest extends TestCase
         $this->assertFalse($this->user->getPassword() === 'false');
     }
 
-    public function testRolesUser()
+    public function testRolesUser() : void
     {
         $this->user->setRoles(['ROLE_USER']);
         $this->assertSame(['ROLE_USER'], $this->user->getRoles());
@@ -60,16 +62,23 @@ class UserUnitTest extends TestCase
         $this->assertFalse($this->user->getRoles([]) === 'false');
     }
 
-    public function testSalt()
+    public function testTasks()
+    {
+        $this->user->addTask($this->task);
+        $this->assertEquals(false, $this->user->getTasks()->isEmpty());
+        $this->user->removeTask($this->task);
+        $this->assertEquals(true, $this->user->getTasks()->isEmpty());
+    }
+
+    public function testSalt() : void
     {
         $this->assertNull($this->user->getSalt());
     }
 
-    public function testEraseCredentials()
+    public function testEraseCredentials() : void
     {
         $this->assertNull($this->user->eraseCredentials());
     }
-
 
     public function testIsEmpty()
     {
@@ -77,6 +86,7 @@ class UserUnitTest extends TestCase
         $this->assertEmpty($this->user->getLastName());
         $this->assertEmpty($this->user->getEmail());
         $this->assertEmpty($this->user->getPassword());
+        $this->assertEmpty($this->user->getTasks());
     }
 
 }
