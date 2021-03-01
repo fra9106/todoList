@@ -44,8 +44,10 @@ class TaskUnitTest extends TestCase
     public function testIsDone()
     {
         $this->assertEquals(0, $this->task->IsDone());
+        $this->task->toggle(true);
     }
 
+    
     public function testCreatedAt() 
     {
         $this->task->setCreatedAt($this->date);
@@ -68,5 +70,4 @@ class TaskUnitTest extends TestCase
         $this->assertEmpty($this->task->getContent());
         $this->assertEmpty($this->task->getUser());
     }
-
 }
