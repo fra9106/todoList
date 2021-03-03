@@ -23,7 +23,7 @@ class TaskController extends WebTestCase
 
         $this->assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);
     }
-
+    
     public function testRedirectLogin()
     {
         $client = static::createClient();
