@@ -16,11 +16,11 @@
 
     <form action="{{ path('login') }}" method="post">
         <label for="email">E.mail :</label>
-        <input type="text" id="username" required name="_username" value="{{ last_username }}" />
+        <input type="text" id="fieldUsername" name="email" value="{{ last_username }}" />
 
         <label for="password">Mot de passe :</label>
-        <input type="password" id="password" required name="_password" />
-
+        <input type="password" id="fieldPassword" name="password" />
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
         <button class="btn btn-success" type="submit">Se connecter</button>
     </form>
 {% endblock %}
