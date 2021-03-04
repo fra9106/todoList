@@ -43,7 +43,7 @@ abstract class NeedLogin extends WebTestCase
         $button = $crawler->filter('form');
         $form = $button->form([
             'email' => 'bibi@admin.fr',
-            'password' => 'password'
+            'password' => 'bibi'
         ]);
 
         $this->client->submit($form);

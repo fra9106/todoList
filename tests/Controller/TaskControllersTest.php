@@ -63,8 +63,8 @@ class TaskController extends NeedLogin
         $this->loginUser();
         $crawler = $this->client->request('GET', '/tasks/15/edit');
         $form = $crawler->selectButton('Modifier')->form([
-			'task[title]' => "titreTest",
-			'task[content]' => "contenuTest",
+			'task[title]' => "Un joli titre",
+			'task[content]' => "Un joli contenu",
 		]);
 
 		$this->client->submit($form);
