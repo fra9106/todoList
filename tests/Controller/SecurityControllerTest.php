@@ -2,100 +2,138 @@
 
 namespace App\Tests\Controller;
 
+use App\Tests\Logger\NeedLogin;
 use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class SecurityControllerTest extends WebTestCase
+class SecurityControllerTest extends NeedLogin
 {
-    public function testDisplayFormLogin()
+    /**
+	 * Test display login form
+	 *
+	 * @return void
+	 */
+	public function testDisplayFormLogin()
     {
-		$client = static::createClient();
-		$client->request('GET', '/login');
+		$this->client->request('GET', '/login');
 		$this->assertResponseStatusCodeSame(Response::HTTP_OK);
 	}
 
+	/**
+	 * Test login
+	 *
+	 * @return void
+	 */
     public function testLogin()
 	{
-		$client = static::createClient();
-		$crawler = $client->request('GET', '/login');
+		$crawler = $this->client->request('GET', '/login');
 		$form = $crawler->selectButton('Se connecter')->form([
 			'email' => "toto@user.fr",
 			'password' => "toto",
 		]);
-        $client->submit($form);
+
+        $this->client->submit($form);
 		$this->assertResponseRedirects('/');
     }
 
+	/**
+	 * Test bad login
+	 *
+	 * @return void
+	 */
 	public function testBadLogin()
 	{
-		$client = static::createClient();
-		$crawler = $client->request('GET', '/login');
+		$crawler = $this->client->request('GET', '/login');
 		$form = $crawler->selectButton('Se connecter')->form([
 			'email' => "toto@user.fr",
 			'password' => "bobo",
 		]);
-		$client->submit($form);
+
+		$this->client->submit($form);
 		$this->assertResponseRedirects('/login');
-		$client->followRedirect();
+		$this->client->followRedirect();
 		$this->assertSelectorExists('.alert-danger');
 	}
 
+	/**
+	 * Test login admin
+	 *
+	 * @return void
+	 */
 	public function testAdminLogin()
 	{
-		$client = static::createClient();
-		$crawler = $client->request('GET', '/login');
+		$crawler = $this->client->request('GET', '/login');
 		$form = $crawler->selectButton('Se connecter')->form([
 			'email' => "bibi@admin.fr",
 			'password' => "bibi",
 		]);
-        $client->submit($form);
+
+        $this->client->submit($form);
 		$this->assertResponseRedirects('/');
     }
 
+	/**
+	 * Test bad login admin
+	 *
+	 * @return void
+	 */
 	public function testAminBadLogin()
 	{
-		$client = static::createClient();
-		$crawler = $client->request('GET', '/login');
+		$crawler = $this->client->request('GET', '/login');
 		$form = $crawler->selectButton('Se connecter')->form([
 			'email' => "bibi@admin.fr",
 			'password' => "titi",
 		]);
-		$client->submit($form);
+
+		$this->client->submit($form);
 		$this->assertResponseRedirects('/login');
-		$client->followRedirect();
+		$this->client->followRedirect();
 		$this->assertSelectorExists('.alert-danger');
 	}
 
+	/**
+	 * Test login anonymous
+	 *
+	 * @return void
+	 */
 	public function testAnonymousLogin()
 	{
-		$client = static::createClient();
-		$crawler = $client->request('GET', '/login');
+		$crawler = $this->client->request('GET', '/login');
 		$form = $crawler->selectButton('Se connecter')->form([
 			'email' => "anonymous@symfony.com",
 			'password' => "anonymous",
 		]);
-        $client->submit($form);
+
+        $this->client->submit($form);
 		$this->assertResponseRedirects('/');
     }
 
+	/**
+	 * Test bad anonymous login
+	 *
+	 * @return void
+	 */
 	public function testAnonymousBadLogin()
 	{
-		$client = static::createClient();
-		$crawler = $client->request('GET', '/login');
+		$crawler = $this->client->request('GET', '/login');
 		$form = $crawler->selectButton('Se connecter')->form([
 			'email' => "anonymous@symfony.com",
 			'password' => "bidule",
 		]);
-		$client->submit($form);
+
+		$this->client->submit($form);
 		$this->assertResponseRedirects('/login');
-		$client->followRedirect();
+		$this->client->followRedirect();
 		$this->assertSelectorExists('.alert-danger');
 	}
 
+	/**
+	 * Test logout
+	 *
+	 * @return void
+	 */
 	public function testLogout()
     {
-		$client = static::createClient();
-        $client->request('GET', '/logout');
-        $this->assertEquals(302, $client->getResponse()->getStatusCode());
+        $this->client->request('GET', '/logout');
+        $this->assertEquals(302, $this->client->getResponse()->getStatusCode());
     }
 }
