@@ -2,7 +2,7 @@
 <html lang="en">
  <head>
   <meta charset="UTF-8">
-  <title>Dashboard for C:\Users\bouto\Documents\todoList\src\Entity</title>
+  <title>Dashboard for C:\Users\bouto\Documents\todoList\src\Security</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../_css/bootstrap.min.css" rel="stylesheet" type="text/css">
   <link href="../_css/nv.d3.min.css" rel="stylesheet" type="text/css">
@@ -17,7 +17,7 @@
       <nav aria-label="breadcrumb">
        <ol class="breadcrumb">
          <li class="breadcrumb-item"><a href="../index.html">C:\Users\bouto\Documents\todoList\src</a></li>
-         <li class="breadcrumb-item"><a href="index.html">Entity</a></li>
+         <li class="breadcrumb-item"><a href="index.html">Security</a></li>
          <li class="breadcrumb-item active">(Dashboard)</li>
 
        </ol>
@@ -58,6 +58,7 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="LoginFormAuthenticator.php.html#23">App\Security\LoginFormAuthenticator</a></td><td class="text-right">88%</td></tr>
 
        </tbody>
       </table>
@@ -74,6 +75,7 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="LoginFormAuthenticator.php.html#23">App\Security\LoginFormAuthenticator</a></td><td class="text-right">12</td></tr>
 
        </tbody>
       </table>
@@ -111,6 +113,8 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="LoginFormAuthenticator.php.html#93"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">66%</td></tr>
+       <tr><td><a href="LoginFormAuthenticator.php.html#63"><abbr title="App\Security\LoginFormAuthenticator::getUser">getUser</abbr></a></td><td class="text-right">71%</td></tr>
 
        </tbody>
       </table>
@@ -127,6 +131,8 @@
         </tr>
        </thead>
        <tbody>
+       <tr><td><a href="LoginFormAuthenticator.php.html#63"><abbr title="App\Security\LoginFormAuthenticator::getUser">getUser</abbr></a></td><td class="text-right">3</td></tr>
+       <tr><td><a href="LoginFormAuthenticator.php.html#93"><abbr title="App\Security\LoginFormAuthenticator::onAuthenticationSuccess">onAuthenticationSuccess</abbr></a></td><td class="text-right">2</td></tr>
 
        </tbody>
       </table>
@@ -155,7 +161,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#classCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,2], "Class Coverage"))
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,1,0,0], "Class Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -173,7 +179,7 @@ $(document).ready(function() {
       .yAxis.tickFormat(d3.format('d'));
 
     d3.select('#methodCoverageDistribution svg')
-      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,0,0,0,0,31], "Method Coverage"))
+      .datum(getCoverageDistributionData([0,0,0,0,0,0,0,1,1,0,0,6], "Method Coverage"))
       .transition().duration(500).call(chart);
 
     nv.utils.windowResize(chart.update);
@@ -223,7 +229,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Cyclomatic Complexity');
 
     d3.select('#classComplexity svg')
-      .datum(getComplexityData([[100,12,"<a href=\"Task.php.html#19\">App\\Entity\\Task<\/a>"],[100,22,"<a href=\"User.php.html#20\">App\\Entity\\User<\/a>"]], 'Class Complexity'))
+      .datum(getComplexityData([[88.88888888888889,12,"<a href=\"LoginFormAuthenticator.php.html#23\">App\\Security\\LoginFormAuthenticator<\/a>"]], 'Class Complexity'))
       .transition()
       .duration(500)
       .call(chart);
@@ -247,7 +253,7 @@ $(document).ready(function() {
     chart.yAxis.axisLabel('Method Complexity');
 
     d3.select('#methodComplexity svg')
-      .datum(getComplexityData([[100,1,"<a href=\"Task.php.html#68\">App\\Entity\\Task::__construct<\/a>"],[100,1,"<a href=\"Task.php.html#74\">App\\Entity\\Task::getId<\/a>"],[100,1,"<a href=\"Task.php.html#79\">App\\Entity\\Task::getCreatedAt<\/a>"],[100,1,"<a href=\"Task.php.html#84\">App\\Entity\\Task::setCreatedAt<\/a>"],[100,1,"<a href=\"Task.php.html#89\">App\\Entity\\Task::getTitle<\/a>"],[100,1,"<a href=\"Task.php.html#94\">App\\Entity\\Task::setTitle<\/a>"],[100,1,"<a href=\"Task.php.html#99\">App\\Entity\\Task::getContent<\/a>"],[100,1,"<a href=\"Task.php.html#104\">App\\Entity\\Task::setContent<\/a>"],[100,1,"<a href=\"Task.php.html#109\">App\\Entity\\Task::isDone<\/a>"],[100,1,"<a href=\"Task.php.html#114\">App\\Entity\\Task::toggle<\/a>"],[100,1,"<a href=\"Task.php.html#119\">App\\Entity\\Task::getUser<\/a>"],[100,1,"<a href=\"Task.php.html#124\">App\\Entity\\Task::setUser<\/a>"],[100,1,"<a href=\"User.php.html#85\">App\\Entity\\User::__construct<\/a>"],[100,1,"<a href=\"User.php.html#90\">App\\Entity\\User::getId<\/a>"],[100,1,"<a href=\"User.php.html#95\">App\\Entity\\User::getEmail<\/a>"],[100,1,"<a href=\"User.php.html#100\">App\\Entity\\User::setEmail<\/a>"],[100,1,"<a href=\"User.php.html#112\">App\\Entity\\User::getUsername<\/a>"],[100,1,"<a href=\"User.php.html#120\">App\\Entity\\User::getRoles<\/a>"],[100,1,"<a href=\"User.php.html#129\">App\\Entity\\User::setRoles<\/a>"],[100,1,"<a href=\"User.php.html#139\">App\\Entity\\User::getPassword<\/a>"],[100,1,"<a href=\"User.php.html#144\">App\\Entity\\User::setPassword<\/a>"],[100,1,"<a href=\"User.php.html#157\">App\\Entity\\User::getSalt<\/a>"],[100,1,"<a href=\"User.php.html#165\">App\\Entity\\User::eraseCredentials<\/a>"],[100,1,"<a href=\"User.php.html#174\">App\\Entity\\User::getTasks<\/a>"],[100,2,"<a href=\"User.php.html#179\">App\\Entity\\User::addTask<\/a>"],[100,3,"<a href=\"User.php.html#189\">App\\Entity\\User::removeTask<\/a>"],[100,1,"<a href=\"User.php.html#201\">App\\Entity\\User::getFirstName<\/a>"],[100,1,"<a href=\"User.php.html#206\">App\\Entity\\User::setFirstName<\/a>"],[100,1,"<a href=\"User.php.html#213\">App\\Entity\\User::getLastName<\/a>"],[100,1,"<a href=\"User.php.html#218\">App\\Entity\\User::setLastName<\/a>"],[100,1,"<a href=\"User.php.html#225\">App\\Entity\\User::getFullName<\/a>"]], 'Method Complexity'))
+      .datum(getComplexityData([[100,1,"<a href=\"LoginFormAuthenticator.php.html#34\">App\\Security\\LoginFormAuthenticator::__construct<\/a>"],[100,2,"<a href=\"LoginFormAuthenticator.php.html#42\">App\\Security\\LoginFormAuthenticator::supports<\/a>"],[100,1,"<a href=\"LoginFormAuthenticator.php.html#48\">App\\Security\\LoginFormAuthenticator::getCredentials<\/a>"],[71.42857142857143,3,"<a href=\"LoginFormAuthenticator.php.html#63\">App\\Security\\LoginFormAuthenticator::getUser<\/a>"],[100,1,"<a href=\"LoginFormAuthenticator.php.html#80\">App\\Security\\LoginFormAuthenticator::checkCredentials<\/a>"],[100,1,"<a href=\"LoginFormAuthenticator.php.html#88\">App\\Security\\LoginFormAuthenticator::getPassword<\/a>"],[66.66666666666666,2,"<a href=\"LoginFormAuthenticator.php.html#93\">App\\Security\\LoginFormAuthenticator::onAuthenticationSuccess<\/a>"],[100,1,"<a href=\"LoginFormAuthenticator.php.html#102\">App\\Security\\LoginFormAuthenticator::getLoginUrl<\/a>"]], 'Method Complexity'))
       .transition()
       .duration(500)
       .call(chart);

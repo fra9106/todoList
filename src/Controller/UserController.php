@@ -40,7 +40,7 @@ class UserController extends AbstractController
     /**
      * @Route("/users/create", name="user_create")
      */
-    public function UserCreate(Request $request, UserPasswordEncoderInterface $encoder)
+    public function userCreate(Request $request, UserPasswordEncoderInterface $encoder)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $user = new User();
@@ -70,7 +70,7 @@ class UserController extends AbstractController
     /**
      * @Route("/users/{id}/edit", name="user_edit")
      */
-    public function editAction(User $user, Request $request, UserPasswordEncoderInterface $encoder)
+    public function userEdit(User $user, Request $request, UserPasswordEncoderInterface $encoder)
     {
         $this->denyAccessUnlessGranted('ROLE_ADMIN');
         $form = $this->createForm(UserType::class, $user);
