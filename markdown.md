@@ -3,9 +3,9 @@ Project basis #8 : Improve an existing project
 # Preamble
 You can intervene on the project at any time to offer new functionalities or
 why not new implementations which would serve to make the code evolve in a relevant way.
-# Install project :
+# Install project on your machine:
 ```
-To do this, go to the README file and follow the installation instructions
+To do this, go to : https://github.com/fra9106/todoList and Fork it 
 ```
 # Path to follow :
 ```

@@ -39,7 +39,7 @@ class UserControllerTest extends NeedLogin
 		]);
         
         $this->client->submit($form);
-		$this->assertResponseRedirects('/login');
+		$this->assertResponseRedirects('/users');
 		$this->client->followRedirect();
 		$this->assertSelectorExists('.alert-success');
     }
