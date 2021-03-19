@@ -55,10 +55,6 @@ class UserController extends AbstractController
             $this->entityManager->flush();
         
             $this->addFlash('success', "L'utilisateur a bien été ajouté.");
-            return $this->redirectToRoute('login');
-
-            
-
             return $this->redirectToRoute('user_list');
         }
 
