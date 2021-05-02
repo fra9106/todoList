@@ -1,0 +1,13 @@
+nom : CI
+
+sur : [push]
+
+travaux :
+   build-test :
+     runs-on : ubuntu-latest
+
+    étapes :
+    - utilise : actions / checkout @ v2 
+    - utilise : php-actions / composer @ v5 # ou une gestion alternative des dépendances 
+    - utilise : php-actions / phpstan @ v2 
+    # ... puis vos propres étapes de projet ...
